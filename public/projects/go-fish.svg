@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-label="A fanned hand of playing cards">
+  <rect width="800" height="450" fill="#162e51"/>
+  <g font-family="Georgia, 'Times New Roman', serif">
+    <!-- A hearts -->
+    <g transform="translate(400 540) rotate(-24) translate(-70 -360)">
+      <rect width="140" height="190" rx="12" fill="#ffffff" stroke="#c9c9c9"/>
+      <text x="16" y="36" font-size="26" fill="#d83933">A</text>
+      <text x="16" y="60" font-size="20" fill="#d83933">&#9829;</text>
+      <text x="70" y="128" font-size="66" fill="#d83933" text-anchor="middle">&#9829;</text>
+    </g>
+    <!-- K spades -->
+    <g transform="translate(400 540) rotate(-8) translate(-70 -360)">
+      <rect width="140" height="190" rx="12" fill="#ffffff" stroke="#c9c9c9"/>
+      <text x="16" y="36" font-size="26" fill="#1b1b1b">K</text>
+      <text x="16" y="60" font-size="20" fill="#1b1b1b">&#9824;</text>
+      <text x="70" y="128" font-size="66" fill="#1b1b1b" text-anchor="middle">&#9824;</text>
+    </g>
+    <!-- Q diamonds -->
+    <g transform="translate(400 540) rotate(8) translate(-70 -360)">
+      <rect width="140" height="190" rx="12" fill="#ffffff" stroke="#c9c9c9"/>
+      <text x="16" y="36" font-size="26" fill="#d83933">Q</text>
+      <text x="16" y="60" font-size="20" fill="#d83933">&#9830;</text>
+      <text x="70" y="128" font-size="66" fill="#d83933" text-anchor="middle">&#9830;</text>
+    </g>
+    <!-- J clubs -->
+    <g transform="translate(400 540) rotate(24) translate(-70 -360)">
+      <rect width="140" height="190" rx="12" fill="#ffffff" stroke="#c9c9c9"/>
+      <text x="16" y="36" font-size="26" fill="#1b1b1b">J</text>
+      <text x="16" y="60" font-size="20" fill="#1b1b1b">&#9827;</text>
+      <text x="70" y="128" font-size="66" fill="#1b1b1b" text-anchor="middle">&#9827;</text>
+    </g>
+  </g>
+</svg>

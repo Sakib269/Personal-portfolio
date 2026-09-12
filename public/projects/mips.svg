@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-label="A MIPS assembly simulator terminal with registers">
+  <rect width="800" height="450" fill="#0f1a2e"/>
+  <!-- window -->
+  <rect x="64" y="46" width="672" height="358" rx="12" fill="#162e51" stroke="#2b3f63" stroke-width="2"/>
+  <!-- title bar -->
+  <path d="M64 58 a12 12 0 0 1 12 -12 h648 a12 12 0 0 1 12 12 v30 h-672 z" fill="#1f3a63"/>
+  <circle cx="92" cy="72" r="6" fill="#ff5f56"/>
+  <circle cx="114" cy="72" r="6" fill="#ffbd2e"/>
+  <circle cx="136" cy="72" r="6" fill="#27c93f"/>
+  <text x="400" y="77" font-family="'Roboto Mono', monospace" font-size="15" fill="#8fa6c4" text-anchor="middle">mips-sim</text>
+  <!-- code -->
+  <g font-family="'Roboto Mono', monospace" font-size="19">
+    <text x="96" y="132" fill="#73b3e7">.text</text>
+    <text x="96" y="164" fill="#e6edf5">addi <tspan fill="#ffbe2e">$t0</tspan>, $zero, 5</text>
+    <text x="96" y="196" fill="#e6edf5">addi <tspan fill="#ffbe2e">$t1</tspan>, $zero, 3</text>
+    <rect x="82" y="212" width="470" height="30" rx="4" fill="#ffbe2e" opacity="0.14"/>
+    <text x="96" y="233" fill="#ffffff">add  <tspan fill="#ffbe2e">$t2</tspan>, $t0, $t1</text>
+    <text x="96" y="265" fill="#e6edf5">sw   <tspan fill="#ffbe2e">$t2</tspan>, 0($sp)</text>
+    <text x="96" y="297" fill="#5a7599">syscall</text>
+  </g>
+  <!-- register panel divider -->
+  <line x1="576" y1="104" x2="576" y2="368" stroke="#2b3f63" stroke-width="2"/>
+  <g font-family="'Roboto Mono', monospace" font-size="15">
+    <text x="600" y="134" fill="#8fa6c4">REGISTERS</text>
+    <text x="600" y="164" fill="#e6edf5">$t0  0x5</text>
+    <text x="600" y="190" fill="#e6edf5">$t1  0x3</text>
+    <text x="600" y="216" fill="#7ee0a0">$t2  0x8</text>
+    <text x="600" y="242" fill="#e6edf5">$sp  0x7ff</text>
+    <text x="600" y="268" fill="#e6edf5">pc   0x10</text>
+  </g>
+</svg>

@@ -1,0 +1,35 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Remove-Item \"C:\\\\Users\\\\sakib\\\\OneDrive\\\\Desktop\\\\portfolio\\\\components\\\\cursor.tsx\" -Confirm:$false)",
+      "PowerShell(npm run build)",
+      "Bash(cp -r C:/Users/sakib/OneDrive/Desktop/portfolio/app C:/Users/sakib/AppData/Local/Temp/claude/C--Users-sakib-OneDrive-Desktop-portfolio/2d12ba13-23c4-4ce3-9caf-9faf9dc16bf4/scratchpad/backup-pre-uswds/app)",
+      "Bash(cp -r C:/Users/sakib/OneDrive/Desktop/portfolio/components C:/Users/sakib/AppData/Local/Temp/claude/C--Users-sakib-OneDrive-Desktop-portfolio/2d12ba13-23c4-4ce3-9caf-9faf9dc16bf4/scratchpad/backup-pre-uswds/components)",
+      "Bash(echo \"Backup complete:\")",
+      "Bash(ls -la C:/Users/sakib/AppData/Local/Temp/claude/C--Users-sakib-OneDrive-Desktop-portfolio/2d12ba13-23c4-4ce3-9caf-9faf9dc16bf4/scratchpad/backup-pre-uswds)",
+      "PowerShell(npm install @uswds/uswds@latest @trussworks/react-uswds@latest sass --save 2>&1)",
+      "Bash(node -e \"const p=require\\('@trussworks/react-uswds/package.json'\\); console.log\\('version',p.version\\); console.log\\('peers',JSON.stringify\\(p.peerDependencies\\)\\); console.log\\('main',p.main,'module',p.module\\); console.log\\('exports keys', Object.keys\\(p.exports||{}\\).slice\\(0,20\\)\\)\")",
+      "Bash(node -e \"const p=require\\('@uswds/uswds/package.json'\\); console.log\\('version',p.version\\); console.log\\('main',p.main,'sass',p.sass,'style',p.style\\)\")",
+      "Bash(node -e \"const m=require\\('@trussworks/react-uswds'\\); const keys=Object.keys\\(m\\); console.log\\('total exports:',keys.length\\); console.log\\(keys.filter\\(k=>/Banner|Header|Footer|Identifier|Button|Card|Tag|Summary|Alert|Nav|GridContainer|Grid/.test\\(k\\)\\).join\\(', '\\)\\)\")",
+      "Bash(grep -oE \"BannerFlag[^;]{0,200}\" node_modules/@trussworks/react-uswds/lib/index.js)",
+      "Read(//c/Users/sakib/OneDrive/Desktop/lib/**)",
+      "Read(//c/Users/sakib/OneDrive/Desktop/**)",
+      "PowerShell(npm run build 2>&1)",
+      "Bash(node -e \"const fs=require\\('fs'\\); const p=JSON.parse\\(fs.readFileSync\\('node_modules/@uswds/uswds/package.json','utf8'\\)\\); console.log\\('exports:', JSON.stringify\\(p.exports,null,2\\)\\); console.log\\('main/style/sass:', p.main, p.style, p.sass\\)\")",
+      "Bash(ls projects *)",
+      "Bash(ls headshot.png about.jpg)",
+      "PowerShell(npm view @noctuatech/uswds 2>&1)",
+      "PowerShell(npm install @noctuatech/uswds 2>&1)",
+      "Bash(grep -oE \"html \\\\`[^\\\\`]*\\\\`\" summary-box/summary-box.element.js)",
+      "Bash(grep -oE \"icon-path|iconPath|/[a-z_]+\\\\.svg|sprite|\\\\\\\\\\\\$\\\\{[^}]+\\\\}\" icon/icon.element.js)",
+      "Bash(node -e \"const t=require\\('./tsconfig.json'\\); console.log\\(JSON.stringify\\(t.include\\)\\)\")",
+      "PowerShell(try { Stop-Process -Id 18008 -Force -ErrorAction Stop; \"killed 18008\" } catch { $_.Exception.Message })",
+      "PowerShell($c = Get-NetTCPConnection -LocalPort 3000 -State Listen -ErrorAction SilentlyContinue | Select-Object -First 1; if \\($c\\) { Stop-Process -Id $c.OwningProcess -Force; \"killed PID $\\($c.OwningProcess\\) on 3000\" } else { \"nothing listening on 3000\" })",
+      "PowerShell($gh = Get-Command gh -ErrorAction SilentlyContinue; if \\($gh\\) { \"gh at: $\\($gh.Source\\)\"; gh auth status 2>&1 | Select-Object -First 6 } else { \"gh NOT found\" })",
+      "Bash(git init *)",
+      "Bash(git add *)",
+      "Bash(xargs -0 ls -la)",
+      "Bash(sort -k5 -n -r)"
+    ]
+  }
+}

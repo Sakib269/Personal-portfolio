@@ -1,0 +1,527 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * USWDS provides base typography, layout, and component styles via
+ * @uswds/uswds/dist/css/uswds.min.css (imported after this file in layout.tsx,
+ * so USWDS wins the cascade on base elements). Tailwind is kept only for the
+ * occasional utility; the site is styled with real USWDS classes + react-uswds.
+ */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Theme tokens. Light is the default; [data-theme="dark"] swaps the values and
+   the whole site follows because custom components read these variables. */
+:root {
+  --bg: #ffffff;
+  --bg-alt: #f0f0f0;
+  --surface: #ffffff;
+  --text: #1b1b1b;
+  --muted: #565c65;
+  --muted-2: #71767a;
+  --border: #dfe1e2;
+  --accent: #005ea2;
+  --heading: #162e51;
+  --hover-tint: rgba(0, 94, 162, 0.06);
+  --pill-bg: rgba(0, 94, 162, 0.1);
+  --summary-bg: #e1f3f8;
+  --rail-line: #a9aeb1;
+}
+:root[data-theme="dark"] {
+  --bg: #0f1620;
+  --bg-alt: #161f2b;
+  --surface: #1b2735;
+  --text: #e6ebf1;
+  --muted: #aab4c0;
+  --muted-2: #8a96a3;
+  --border: #2b3846;
+  --accent: #7ab3e6;
+  --heading: #e6ebf1;
+  --hover-tint: rgba(122, 179, 230, 0.08);
+  --pill-bg: rgba(122, 179, 230, 0.14);
+  --summary-bg: #16232f;
+  --rail-line: #46566a;
+}
+/* html body raises specificity above USWDS's own `body { background: #fff }`. */
+html body {
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+/* usa-config is a custom element wrapping the whole app; make it a block so the
+   sticky header flows and sticks correctly. */
+usa-config {
+  display: block;
+}
+
+/* Sticky header keeps the nav reachable without scrolling up. On wide screens
+   the fixed .nav-rail takes over and the header's inline nav is hidden. */
+.usa-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background-color: #fff;
+  border-bottom: 1px solid #dfe1e2;
+}
+@media (min-width: 80em) {
+  /* Wide screens: the fixed .nav-rail owns navigation, so hide the header's
+     inline nav (USWDS shows it by default at this width). The header stays as a
+     slim bar with just the name. !important to beat USWDS's own display rule. */
+  .usa-header.usa-header--basic .usa-nav {
+    display: none !important;
+  }
+}
+
+/* Tighter vertical rhythm so the page is shorter and needs less scrolling.
+   USWDS sections default to ~4rem of padding top and bottom on desktop. */
+.usa-section {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+@media (min-width: 40em) {
+  .usa-section {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+}
+
+/*
+ * The hero's outline button sits on a dark navy background; USWDS's default
+ * blue outline is low-contrast there. We reach into the web component's shadow
+ * DOM via ::part() (the button exposes part="button"/"link") to make it white.
+ */
+.hero-actions usa-button[variant="outline"]::part(link),
+.hero-actions usa-button[variant="outline"]::part(button) {
+  box-shadow: inset 0 0 0 2px #ffffff;
+  color: #ffffff;
+}
+
+/* Blue disc bullets for the experience lists */
+.exp-list {
+  list-style: disc;
+  padding-left: 1.25rem;
+  margin: 0;
+}
+.exp-list li {
+  margin-bottom: 0.5rem;
+}
+.exp-list li::marker {
+  color: #005ea2;
+}
+
+/* Scroll-reveal: fade sections up as they enter the viewport */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Fixed social rail — desktop only, fades out over the Contact section */
+.social-rail {
+  position: fixed;
+  left: 2rem;
+  bottom: 0;
+  z-index: 40;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+@media (min-width: 64em) {
+  .social-rail {
+    display: flex;
+  }
+}
+.social-rail[data-hidden="true"] {
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+}
+.social-rail ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.social-rail a {
+  display: inline-flex;
+  color: #565c65;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+.social-rail a:hover {
+  color: #005ea2;
+  transform: translateY(-3px);
+}
+.social-rail__line {
+  width: 1px;
+  height: 88px;
+  background: #a9aeb1;
+}
+
+/* Projects — two-column rows, whole block links to GitHub (Chiang-style) */
+.projects-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.proj {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.4rem;
+  padding: 1.25rem;
+  border-radius: 0.5rem;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+@media (min-width: 40em) {
+  .proj {
+    grid-template-columns: 8rem 1fr;
+    gap: 1.5rem;
+  }
+}
+.proj:hover {
+  background: rgba(0, 94, 162, 0.06);
+  box-shadow: inset 0 0 0 1px #dfe1e2;
+}
+.proj__meta {
+  font-family: "Roboto Mono", ui-monospace, monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #71767a;
+  padding-top: 0.2rem;
+}
+.proj__title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #1b1b1b;
+  margin: 0 0 0.4rem;
+}
+.proj__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: inherit;
+  text-decoration: none;
+}
+/* the overlay makes the entire row clickable */
+.proj__link::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 0.5rem;
+}
+.proj:hover .proj__title,
+.proj__link:focus-visible {
+  color: #005ea2;
+}
+.proj__arrow {
+  transition: transform 0.2s ease;
+}
+.proj:hover .proj__arrow {
+  transform: translate(2px, -2px);
+}
+.proj__desc {
+  color: #565c65;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 0 0 0.75rem;
+}
+.proj__stack {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+}
+.proj__stack li {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #005ea2;
+  background: rgba(0, 94, 162, 0.1);
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  line-height: 1;
+}
+
+/* Fixed vertical section-nav rail (wide screens only) */
+.nav-rail {
+  position: fixed;
+  right: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 40;
+  display: none;
+}
+@media (min-width: 80em) {
+  .nav-rail {
+    display: block;
+  }
+}
+.nav-rail ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  align-items: flex-end;
+}
+.nav-rail a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.6rem;
+  text-decoration: none;
+  color: #565c65;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: color 0.2s ease;
+}
+.nav-rail__line {
+  display: inline-block;
+  width: 20px;
+  height: 2px;
+  background: #a9aeb1;
+  transition: width 0.2s ease, background 0.2s ease;
+}
+.nav-rail a:hover {
+  color: #005ea2;
+}
+.nav-rail a:hover .nav-rail__line {
+  width: 34px;
+  background: #005ea2;
+}
+.nav-rail a.is-active {
+  color: #162e51;
+  font-weight: 700;
+}
+.nav-rail a.is-active .nav-rail__line {
+  width: 40px;
+  background: #005ea2;
+}
+
+/* ── Experience — stacked full-width rows ─────────────────────── */
+.exp {
+  padding: 0.5rem 0 1.25rem;
+}
+.exp + .exp {
+  border-top: 1px solid var(--border);
+  margin-top: 1rem;
+  padding-top: 1.75rem;
+}
+.exp__head {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.9rem;
+}
+.exp__logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  width: 48px;
+  flex-shrink: 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.exp__logo img {
+  max-height: 34px;
+  max-width: 34px;
+  object-fit: contain;
+}
+.exp__title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0;
+}
+.exp__meta {
+  font-family: "Roboto Mono", ui-monospace, monospace;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted-2);
+  margin: 0.2rem 0 0;
+}
+.exp__bullets {
+  margin: 0;
+  padding-left: 1.25rem;
+  list-style: disc;
+}
+.exp__bullets li {
+  margin-bottom: 0.5rem;
+  color: var(--muted);
+  line-height: 1.55;
+}
+.exp__bullets li::marker {
+  color: var(--accent);
+}
+
+/* ── Contact summary box (themeable replacement for usa-summary-box) ── */
+.summary-box {
+  background: var(--summary-bg);
+  border: 2px solid var(--accent);
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+}
+.summary-box__heading {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0 0 0.5rem;
+}
+.summary-box__text {
+  color: var(--muted);
+  margin: 0;
+  line-height: 1.55;
+}
+
+/* ── About credential chips + hairlines ──────────────────────── */
+.cred-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  width: 44px;
+  flex-shrink: 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.framed {
+  border: 1px solid var(--border) !important;
+}
+.divider-top {
+  border-top: 1px solid var(--border);
+}
+
+/* ── Theme toggle ────────────────────────────────────────────── */
+.usa-navbar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.theme-toggle {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.25rem;
+  width: 2.25rem;
+  border: 1px solid var(--border);
+  border-radius: 0.25rem;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+}
+.theme-toggle:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* ── Dark-mode overrides for USWDS classes and existing custom rules ── */
+[data-theme="dark"] .bg-base-lightest {
+  background-color: var(--bg-alt) !important;
+}
+[data-theme="dark"] .text-primary-darker {
+  color: var(--heading) !important;
+}
+[data-theme="dark"] .text-primary {
+  color: var(--accent) !important;
+}
+[data-theme="dark"] .text-base,
+[data-theme="dark"] .text-base-dark {
+  color: var(--muted) !important;
+}
+[data-theme="dark"] .usa-prose {
+  color: var(--text);
+}
+[data-theme="dark"] .usa-header {
+  background-color: var(--bg);
+  border-bottom-color: var(--border);
+}
+[data-theme="dark"] .usa-logo__text a {
+  color: var(--text);
+}
+[data-theme="dark"] .usa-footer,
+[data-theme="dark"] .usa-footer--slim {
+  background-color: var(--bg-alt);
+}
+[data-theme="dark"] .usa-footer__primary-link,
+[data-theme="dark"] .usa-footer__logo-heading {
+  color: var(--text);
+}
+[data-theme="dark"] .usa-footer__return-to-top a {
+  color: var(--accent);
+}
+[data-theme="dark"] .usa-button--outline {
+  color: var(--accent) !important;
+  box-shadow: inset 0 0 0 2px var(--accent) !important;
+}
+[data-theme="dark"] .proj:hover {
+  background: var(--hover-tint);
+  box-shadow: inset 0 0 0 1px var(--border);
+}
+[data-theme="dark"] .proj__meta {
+  color: var(--muted-2);
+}
+[data-theme="dark"] .proj__title {
+  color: var(--text);
+}
+[data-theme="dark"] .proj:hover .proj__title {
+  color: var(--accent);
+}
+[data-theme="dark"] .proj__desc {
+  color: var(--muted);
+}
+[data-theme="dark"] .proj__stack li {
+  color: var(--accent);
+  background: var(--pill-bg);
+}
+[data-theme="dark"] .nav-rail a {
+  color: var(--muted);
+}
+[data-theme="dark"] .nav-rail a:hover,
+[data-theme="dark"] .nav-rail a.is-active {
+  color: var(--accent);
+}
+[data-theme="dark"] .nav-rail__line {
+  background: var(--rail-line);
+}
+[data-theme="dark"] .nav-rail a:hover .nav-rail__line,
+[data-theme="dark"] .nav-rail a.is-active .nav-rail__line {
+  background: var(--accent);
+}
+[data-theme="dark"] .social-rail a {
+  color: var(--muted);
+}
+[data-theme="dark"] .social-rail a:hover {
+  color: var(--accent);
+}
+[data-theme="dark"] .social-rail__line {
+  background: var(--rail-line);
+}
