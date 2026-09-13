@@ -50,6 +50,13 @@ html body {
   color: var(--text);
 }
 
+/* Aptos everywhere — body, headings, and the mono labels too. Uses the
+   locally-installed font (Windows/Office ship it); falls back to Segoe UI. */
+html body,
+html body * {
+  font-family: "Aptos", "Segoe UI", system-ui, -apple-system, sans-serif !important;
+}
+
 /* usa-config is a custom element wrapping the whole app; make it a block so the
    sticky header flows and sticks correctly. */
 usa-config {
@@ -470,6 +477,12 @@ usa-config {
 [data-theme="dark"] .usa-footer,
 [data-theme="dark"] .usa-footer--slim {
   background-color: var(--bg-alt);
+}
+[data-theme="dark"] .usa-footer__primary-section {
+  background-color: var(--bg-alt);
+}
+[data-theme="dark"] .usa-footer__secondary-section {
+  background-color: var(--bg);
 }
 [data-theme="dark"] .usa-footer__primary-link,
 [data-theme="dark"] .usa-footer__logo-heading {
