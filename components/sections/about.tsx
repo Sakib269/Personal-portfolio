@@ -15,25 +15,17 @@ export function About() {
           <div className="desktop:grid-col-7">
             <div className="usa-prose">
               <p>
-                I&apos;m a software engineer at Aflac, and honestly the part I
-                like most is finding some slow, manual process everyone&apos;s
-                quietly resigned to and turning it into something that just runs
-                itself. That pulls me up and down the stack, from the backend
-                services and APIs underneath to the interface people actually
-                touch.
+                I&apos;m a software engineer at Aflac, and what I do best is
+                taking slow, manual processes and turning them into systems that
+                run themselves. That work spans the whole stack: backend
+                services and APIs, the test automation and CI that keep releases
+                safe, and the interfaces people actually use.
               </p>
               <p>
-                I got into this the way a lot of people do: I liked building
-                things, and I was always the one who was good with computers. I
-                came at software through embedded systems, which is probably why
-                I still care most about what&apos;s happening underneath the
-                surface, how the pieces actually talk to each other and what
-                breaks when they don&apos;t.
-              </p>
-              <p>
-                Away from the keyboard, I&apos;m usually playing soccer, sinking
-                too many hours into a video game, or trying to cook something
-                ambitious with my cat supervising from the counter.
+                What I care about most is the layer underneath — how the pieces
+                of a system fit together, and what happens when they don&apos;t.
+                I&apos;m happiest building reliable backends and the kind of
+                internal tooling that quietly makes a whole team faster.
               </p>
             </div>
 

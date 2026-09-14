@@ -63,22 +63,13 @@ usa-config {
   display: block;
 }
 
-/* Sticky header keeps the nav reachable without scrolling up. On wide screens
-   the fixed .nav-rail takes over and the header's inline nav is hidden. */
+/* Slim sticky header — just the name and the theme toggle. */
 .usa-header {
   position: sticky;
   top: 0;
   z-index: 50;
   background-color: #fff;
   border-bottom: 1px solid #dfe1e2;
-}
-@media (min-width: 80em) {
-  /* Wide screens: the fixed .nav-rail owns navigation, so hide the header's
-     inline nav (USWDS shows it by default at this width). The header stays as a
-     slim bar with just the name. !important to beat USWDS's own display rule. */
-  .usa-header.usa-header--basic .usa-nav {
-    display: none !important;
-  }
 }
 
 /* Tighter vertical rhythm so the page is shorter and needs less scrolling.
@@ -135,51 +126,6 @@ usa-config {
     transform: none;
     transition: none;
   }
-}
-
-/* Fixed social rail — desktop only, fades out over the Contact section */
-.social-rail {
-  position: fixed;
-  left: 2rem;
-  bottom: 0;
-  z-index: 40;
-  display: none;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.75rem;
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-@media (min-width: 64em) {
-  .social-rail {
-    display: flex;
-  }
-}
-.social-rail[data-hidden="true"] {
-  opacity: 0;
-  transform: translateY(12px);
-  pointer-events: none;
-}
-.social-rail ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-.social-rail a {
-  display: inline-flex;
-  color: #565c65;
-  transition: color 0.2s ease, transform 0.2s ease;
-}
-.social-rail a:hover {
-  color: #005ea2;
-  transform: translateY(-3px);
-}
-.social-rail__line {
-  width: 1px;
-  height: 88px;
-  background: #a9aeb1;
 }
 
 /* Projects — two-column rows, whole block links to GitHub (Chiang-style) */
@@ -267,64 +213,6 @@ usa-config {
   padding: 0.3rem 0.7rem;
   border-radius: 999px;
   line-height: 1;
-}
-
-/* Fixed vertical section-nav rail (wide screens only) */
-.nav-rail {
-  position: fixed;
-  right: 1.5rem;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 40;
-  display: none;
-}
-@media (min-width: 80em) {
-  .nav-rail {
-    display: block;
-  }
-}
-.nav-rail ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.9rem;
-  align-items: flex-end;
-}
-.nav-rail a {
-  display: inline-flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 0.6rem;
-  text-decoration: none;
-  color: #565c65;
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  transition: color 0.2s ease;
-}
-.nav-rail__line {
-  display: inline-block;
-  width: 20px;
-  height: 2px;
-  background: #a9aeb1;
-  transition: width 0.2s ease, background 0.2s ease;
-}
-.nav-rail a:hover {
-  color: #005ea2;
-}
-.nav-rail a:hover .nav-rail__line {
-  width: 34px;
-  background: #005ea2;
-}
-.nav-rail a.is-active {
-  color: #162e51;
-  font-weight: 700;
-}
-.nav-rail a.is-active .nav-rail__line {
-  width: 40px;
-  background: #005ea2;
 }
 
 /* ── Experience — stacked full-width rows ─────────────────────── */
@@ -514,27 +402,4 @@ usa-config {
 [data-theme="dark"] .proj__stack li {
   color: var(--accent);
   background: var(--pill-bg);
-}
-[data-theme="dark"] .nav-rail a {
-  color: var(--muted);
-}
-[data-theme="dark"] .nav-rail a:hover,
-[data-theme="dark"] .nav-rail a.is-active {
-  color: var(--accent);
-}
-[data-theme="dark"] .nav-rail__line {
-  background: var(--rail-line);
-}
-[data-theme="dark"] .nav-rail a:hover .nav-rail__line,
-[data-theme="dark"] .nav-rail a.is-active .nav-rail__line {
-  background: var(--accent);
-}
-[data-theme="dark"] .social-rail a {
-  color: var(--muted);
-}
-[data-theme="dark"] .social-rail a:hover {
-  color: var(--accent);
-}
-[data-theme="dark"] .social-rail__line {
-  background: var(--rail-line);
 }

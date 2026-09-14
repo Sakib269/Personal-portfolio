@@ -5,8 +5,6 @@ import "./globals.css";
 import { UswdsRegister } from "@/components/uswds-register";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
-import { SocialRail } from "@/components/social";
-import { NavRail } from "@/components/nav-rail";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ?? "https://sakibshadab.dev";
 
@@ -78,8 +76,6 @@ export default function RootLayout({
           <main id="main-content">{children}</main>
           <SiteFooter />
         </usa-config>
-        <SocialRail />
-        <NavRail />
       </body>
     </html>
   );
