@@ -362,22 +362,17 @@ usa-config {
 [data-theme="dark"] .usa-logo__text a {
   color: var(--text);
 }
-[data-theme="dark"] .usa-footer,
-[data-theme="dark"] .usa-footer--slim {
-  background-color: var(--bg-alt);
+/* Minimal footer — a single build-credit line (themes via tokens) */
+.site-footer {
+  background: var(--bg-alt);
+  border-top: 1px solid var(--border);
+  padding: 2rem 1rem;
+  text-align: center;
 }
-[data-theme="dark"] .usa-footer__primary-section {
-  background-color: var(--bg-alt);
-}
-[data-theme="dark"] .usa-footer__secondary-section {
-  background-color: var(--bg);
-}
-[data-theme="dark"] .usa-footer__primary-link,
-[data-theme="dark"] .usa-footer__logo-heading {
-  color: var(--text);
-}
-[data-theme="dark"] .usa-footer__return-to-top a {
-  color: var(--accent);
+.site-footer p {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--muted);
 }
 [data-theme="dark"] .usa-button--outline {
   color: var(--accent) !important;
